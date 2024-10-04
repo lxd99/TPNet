@@ -60,7 +60,8 @@ python evaluate_link_prediction.py --prefix std --dataset_name wikipedia --model
 ```{bash}
 python evaluate_link_prediction.py --prefix std --dataset_name wikipedia --model_name TPNet --num_runs 5 --gpu 0 --use_random_projection --load_best_configs --negative_sample_strategy random
 ```
-
+## Useful File
+You can refer to the `demo_on_matrix_updating.ipynb` file for more information about the updating functions of different temporal walk matrices.
 
 ## Acknowledgments
 We are grateful to the authors of [DyGLib](https://github.com/yule-BUAA/DyGLib), [PINT](https://github.com/AaltoPML/PINT), and[NAT](https://github.com/Graph-COM/Neighborhood-Aware-Temporal-Network) for making their project codes publicly available.
