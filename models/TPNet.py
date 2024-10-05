@@ -16,7 +16,7 @@ class RandomProjectionModule(nn.Module):
         :param edge_num: int, the number of edges
         :param dim_factor: int, the parameter to control the dimension of random projections. Specifically, the
                            dimension of the random projections is set to be dim_factor * log(2*edge_num)
-        :param num_layer: int, the max hop of the maintanined temporal walk matrices
+        :param num_layer: int, the max hop of the maintained temporal walk matrices
         :param time_decay_weight: float, the time decay weight (lambda of the original paper)
         :param device: str, torch device
         :param use_matrix: bool, if True, explicitly maintain the temporal walk matrices
@@ -50,7 +50,7 @@ class RandomProjectionModule(nn.Module):
                 else:
                     self.random_projections.append(
                         nn.Parameter(torch.zeros_like(self.random_projections[i - 1]), requires_grad=False))
-        # otherwise, sotre the random projection of the temporal walk matrices
+        # otherwise, store the random projection of the temporal walk matrices
         else:
             for i in range(self.num_layer + 1):
                 if i == 0:
@@ -79,7 +79,7 @@ class RandomProjectionModule(nn.Module):
 
         # updating for the current timestamp being moved
         # since the current timestamp will be set to the biggest timestamp in this batch
-        # so the random projections should be multipled by the corresponding time decay weight
+        # so the random projections should be multiplied by the corresponding time decay weight
         for i in range(1, self.num_layer + 1):
             self.random_projections[i].data = self.random_projections[i].data * np.power(np.exp(
                 -self.time_decay_weight * (next_time - self.now_time.cpu().numpy())), i)
